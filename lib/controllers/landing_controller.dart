@@ -25,7 +25,6 @@ class LandingController extends GetxController implements CallBackListener {
   void onReady() {
     checkLogin();
     getTrandingGifs();
-    fetchFavGifs();
     super.onReady();
   }
 
@@ -84,9 +83,7 @@ class LandingController extends GetxController implements CallBackListener {
             favGif.add(GifModel(id: doc.id, url: doc.get("url")));
           }
         }
-        // print('${doc.id} => ${doc.get("url")}');
       }
-      // print(object)
     }).catchError((error) => CommonMethods.errorMsg("Failed to fetch favourite: $error"));
   }
 
@@ -101,7 +98,7 @@ class LandingController extends GetxController implements CallBackListener {
       CommonMethods.successMsg("User deleted successfully!");
       fetchFavGifs();
       notifyChildrens();
-    }).catchError((error) => print("Failed to unfavourite gifs: $error"));
+    }).catchError((error) => CommonMethods.errorMsg("Failed to unfavourite gifs: $error"));
   }
 
   //to achieve infinite scroll
@@ -119,7 +116,7 @@ class LandingController extends GetxController implements CallBackListener {
   //to search gif
   void getSearchGifs() {
     if (searchController.text.isNotEmpty) {
-      apiServices.apiRequestGet(this, "getSearchGifs", "${apiList.getSearchGifs}500&q=${searchController.text.trim()}");
+      apiServices.apiRequestGet(this, "getSearchGifs", "${apiList.getSearchGifs}200&q=${searchController.text.trim()}");
     } else {
       getTrandingGifs();
     }
@@ -127,7 +124,7 @@ class LandingController extends GetxController implements CallBackListener {
 
   //get tranding gifs
   getTrandingGifs() {
-    apiServices.apiRequestGet(this, "getTrandingGifs", "${apiList.getTrandingGifs}500");
+    apiServices.apiRequestGet(this, "getTrandingGifs", "${apiList.getTrandingGifs}200");
   }
 
   //signout
@@ -141,19 +138,13 @@ class LandingController extends GetxController implements CallBackListener {
   callBackFunction(String action, result) {
     if (action == "getTrandingGifs") {
       gifLists.value = [];
-      // GifListModel gifListModel = GifListModel.fromJson(result);
       gifList.value = GifListModel.fromJson(result);
-      // appendAllData(gifListModel.data??[]);
-      print(gifList.value.data?.length);
       loadMore();
       notifyChildrens();
     }
     if (action == "getSearchGifs") {
       gifLists.value = [];
-      // GifListModel gifListModel = GifListModel.fromJson(result);
-      // appendAllData(gifListModel.data??[]);
       gifList.value = GifListModel.fromJson(result);
-      print(gifList.value.data?.length);
       loadMore();
       notifyChildrens();
     }

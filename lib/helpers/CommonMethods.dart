@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 // import 'package:photo_view/photo_view.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,30 +13,17 @@ class CommonMethods {
   static String version = "";
 
   static Future<bool> checkInternetConnectivity() async {
-    // String connectionStatus;
-    // bool isConnected = false;
-    // final Connectivity _connectivity = Connectivity();
-    //
-    // try {
-    //   connectionStatus = (await _connectivity.checkConnectivity()).toString();
-    //   if (await _connectivity.checkConnectivity() == [ConnectivityResult.mobile]) {
-    //     print("===internet-connected==Mobile$connectionStatus");
-    //     isConnected = true;
-    //     // I am connected to a mobile network.
-    //   } else if (await _connectivity.checkConnectivity() == [ConnectivityResult.wifi]) {
-    //     isConnected = true;
-    //     print("===internet-connected==wifi$connectionStatus");
-    //     // I am connected to a wifi network.
-    //   } else if (await _connectivity.checkConnectivity() == ConnectivityResult.none) {
-    //     isConnected = false;
-    //     print("===internet-connected==not$connectionStatus");
-    //   }
-    // } on PlatformException catch (e) {
-    //   print("===internet==not connected$e");
-    //   connectionStatus = 'Failed to get connectivity.';
-    // }
-    // return isConnected;
-    return true;
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    bool connected = true;
+    if (connectivityResult == ConnectivityResult.none) {
+      connected = false;
+    } else if (connectivityResult == ConnectivityResult.mobile) {
+      connected = true;
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      connected = true;
+    }
+
+    return connected;
   }
 
   static void moveCursorToastPos(TextEditingController textField) {
