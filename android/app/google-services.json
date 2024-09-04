@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "377353388483",
+    "firebase_url": "https://giphy-b13d9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "giphy-b13d9",
+    "storage_bucket": "giphy-b13d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377353388483:android:9ddc069f3bd19fd882fd76",
+        "android_client_info": {
+          "package_name": "com.example.giphy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeREViKwYRQyhJqq8QB_x84AO3G0dfH8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
