@@ -26,7 +26,7 @@ This Flutter application allows users to search and view GIFs using the Giphy AP
 - **Firebase Authentication**: For managing user accounts.
 - **Giphy API**: For fetching GIF data.
 ## Workflow Video
-<iframe src="https://drive.google.com/file/d/10JLCXu97f2sfY4OkntdJreLjM45I0GzkgQ/preview"  allow="autoplay"></iframe>
+
 
 ## Installation
 
